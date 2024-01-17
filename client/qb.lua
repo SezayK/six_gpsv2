@@ -20,6 +20,7 @@ if Config.framework == "qb" then
     end)
 
     function getInventory()
+        PlayerData = QBCore.Functions.GetPlayerData()
         return PlayerData.inventory
     end
 
