@@ -1,14 +1,3 @@
-local PlayerData
-
-Citizen.CreateThread(function()
-    while true do
-        PlayerData = getPlayerData()
-
-        Citizen.Wait(1000)
-    end
-end)
-
-
 local blips = {}
 
 local function haveItem(item, count)
@@ -20,8 +9,8 @@ local function haveItem(item, count)
     return false
 end
 
-local function createBlipForPlayer(playerData)
-    local player = GetPlayerFromServerId(playerData.playerId)
+local function createBlipForPlayer(data)
+    local player = GetPlayerFromServerId(data.playerId)
     local ped = GetPlayerPed(player)
     local status = nil
 
@@ -45,7 +34,7 @@ local function createBlipForPlayer(playerData)
     end
 
     if status then
-        local blip = AddBlipForCoord(playerData.coords)
+        local blip = AddBlipForCoord(data.coords)
         SetBlipScale(blip, Config.Blips[status].scale)
         SetBlipDisplay(blip, Config.Blips[status].display)
         SetBlipSprite(blip, Config.Blips[status].sprite)
@@ -53,7 +42,7 @@ local function createBlipForPlayer(playerData)
         SetBlipCategory(blip, Config.Blips[status].category)
         SetBlipAsShortRange(blip, Config.Blips[status].shortRange)
         BeginTextCommandSetBlipName('STRING')
-        AddTextComponentSubstringPlayerName(playerData.rpName)
+        AddTextComponentSubstringPlayerName(data.rpName)
         EndTextCommandSetBlipName(blip)
         table.insert(blips, blip)
     end
@@ -69,6 +58,8 @@ end
 RegisterNetEvent('sixv_gps:sendGPS')
 AddEventHandler('sixv_gps:sendGPS', function(data)
     removeBlips()
+
+    local PlayerData = getPlayerData()
 
     for _, v in pairs(data) do
         if PlayerData.job.name == v.job and haveItem(Config.GPS.item, 1) and v.playerId ~= GetPlayerServerId(PlayerId()) then

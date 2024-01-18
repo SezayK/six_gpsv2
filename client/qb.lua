@@ -1,14 +1,10 @@
 if Config.framework == "qb" then
     local playerLoaded = false
 
-    PlayerData = {}
-
     Citizen.CreateThread(function()
         QBCore = exports['qb-core']:GetCoreObject()
 
         playerLoaded = true
-
-        PlayerData = QBCore.Functions.GetPlayerData()
 
         function TriggerServerCallback(name, cb, ...)
             if not IsDuplicityVersion() then
@@ -20,18 +16,15 @@ if Config.framework == "qb" then
     end)
 
     function getInventory()
-        PlayerData = QBCore.Functions.GetPlayerData()
+        local PlayerData = QBCore.Functions.GetPlayerData()
         return PlayerData.inventory
     end
 
     function getPlayerData()
+        local PlayerData = QBCore.Functions.GetPlayerData()
         while not PlayerData do
             Citizen.Wait(50)
         end
         return PlayerData
-    end    
-
-    RegisterNetEvent('QBCore:Client:OnJobUpdate', function(JobInfo)
-        PlayerData.job = JobInfo
-    end)
+    end
 end
