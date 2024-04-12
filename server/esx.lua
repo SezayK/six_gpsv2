@@ -25,13 +25,6 @@ if Config.framework == "esx" then
         return xPlayer.source
     end
 
-    function getCoords(player)
-        local ped = GetPlayerPed(player.source)
-        local coords = GetEntityCoords(ped)
-
-        return coords
-    end
-
     function getJobName(xPlayer)
         return xPlayer.getJob().name
     end 

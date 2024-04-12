@@ -19,13 +19,6 @@ if Config.framework == "qb" then
         return player.PlayerData.source
     end
 
-    function getCoords(player)
-        local ped = GetPlayerPed(player.PlayerData.source)
-        local coords = GetEntityCoords(ped)
-
-        return coords
-    end
-
     function getJobName(player)
         return player.PlayerData.job.name
     end 

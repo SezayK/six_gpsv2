@@ -15,19 +15,21 @@ local function createBlipForPlayer(data)
     local status = nil
 
     if IsEntityDead(ped) then
-        status = "dead"
+        if Config.Blips.dead.activated then
+            status = "dead"
+        end
     else
-        if IsPedOnFoot(ped) then
+        if IsPedOnFoot(ped) and Config.Blips.foot.activated then
             status = "foot"
         else
             local vehicle = GetVehiclePedIsIn(ped, false)
-            if IsThisModelAPlane(GetEntityModel(vehicle)) then
+            if IsThisModelAPlane(GetEntityModel(vehicle)) and Config.Blips.plane.activated then
                 status = "plane"
-            elseif IsThisModelAHeli(GetEntityModel(vehicle)) then
+            elseif IsThisModelAHeli(GetEntityModel(vehicle)) and Config.Blips.heli.activated then
                 status = "heli"
-            elseif IsThisModelACar(GetEntityModel(vehicle)) then
+            elseif IsThisModelACar(GetEntityModel(vehicle)) and Config.Blips.car.activated then
                 status = "car"
-            elseif IsThisModelABoat(GetEntityModel(vehicle)) then
+            elseif IsThisModelABoat(GetEntityModel(vehicle)) and Config.Blips.boat.activated then
                 status = "boat"
             end
         end

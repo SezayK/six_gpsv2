@@ -16,6 +16,7 @@ Config.GPS = {
 
 Config.Blips = {
 	foot = {
+		activated = true,
 		sprite = 1,
 		scale = 0.8,
 		color = 3,
@@ -24,6 +25,7 @@ Config.Blips = {
 		shortRange = true,
 	},
 	car = {
+		activated = true,
 		sprite = 225,
 		scale = 0.8,
 		color = 3,
@@ -32,6 +34,7 @@ Config.Blips = {
 		shortRange = true,
 	},
 	boat = {
+		activated = true,
 		sprite = 427,
 		scale = 0.8,
 		color = 3,
@@ -40,6 +43,7 @@ Config.Blips = {
 		shortRange = true,
 	},
 	heli = {
+		activated = true,
 		sprite = 64,
 		scale = 0.8,
 		color = 3,
@@ -48,6 +52,7 @@ Config.Blips = {
 		shortRange = true,
 	},
 	plane = {
+		activated = true,
 		sprite = 423,
 		scale = 0.8,
 		color = 3,
@@ -56,6 +61,7 @@ Config.Blips = {
 		shortRange = true,
 	},
 	dead = {
+		activated = true,
 		sprite = 303,
 		scale = 0.8,
 		color = 1,

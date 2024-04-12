@@ -15,18 +15,24 @@ end)
 
 function startgps()
     SetTimeout(Config.GPS.refreshtime, function()
-        for _, gps in ipairs(gpsdata) do
+        local updatedData = {}
+
+        for i, gps in ipairs(gpsdata) do
             local xPlayer = GetPlayerObject(gps.playerId)
+            local ped = GetPlayerPed(gps.playerId)
+
             if xPlayer then  
-                local count = getInventoryItemCount(xPlayer, Config.GPS.item)
-                if count > 0 then
-                    gps.coords = getCoords(xPlayer)
-                    gps.job = getJobName(xPlayer)
-                    TriggerClientEvent("sixv_gps:sendGPS", gps.playerId, gpsdata)
-                end
+                gps.coords = GetEntityCoords(ped)
+                gps.job = getJobName(xPlayer)
+
+                table.insert(updatedData, gps)
             else
-                table.remove(gpsdata, _)
+                table.remove(gpsdata, i)
             end
+        end
+
+        if #updatedData > 0 then
+            TriggerClientEvent("sixv_gps:sendGPS", -1, updatedData)
         end
         startgps()
     end)
