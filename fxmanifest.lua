@@ -20,3 +20,11 @@ client_scripts {
     'client/qb.lua',
     'client/client.lua',
 }
+
+lua54 'yes' 
+
+escrow_ignore {
+	'config.lua',
+	'server/*.lua',
+	'client/*.lua',
+}

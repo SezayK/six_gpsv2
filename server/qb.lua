@@ -23,6 +23,10 @@ if Config.framework == "qb" then
         return player.PlayerData.job.name
     end 
 
+    function getCoords(player)
+        return GetEntityCoords(GetPlayerPed(player.PlayerData.source))
+    end
+
     function getName(player)
         return player.PlayerData.charinfo.firstname .. " " .. player.PlayerData.charinfo.lastname
     end

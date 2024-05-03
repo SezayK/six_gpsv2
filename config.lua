@@ -7,7 +7,7 @@ Config.Language = "en"
 
 Config.GPS = {
 	item = "gps", -- GPS item name
-	refreshtime = 2 * 1000, -- Refreshtime for any Job-Blip in seconds
+	refreshtime = 5 * 1000, -- Refreshtime for any Job-Blip in seconds
 
 	NoAccessToGPS = { -- These jobs have no access to start the GPS
 		"unemployed",

@@ -33,6 +33,10 @@ if Config.framework == "esx" then
         return xPlayer.name
     end
 
+    function getCoords(xPlayer)
+        return GetEntityCoords(GetPlayerPed(xPlayer.source))
+    end
+
     function getInventoryItemCount(xPlayer, item)
         return xPlayer.getInventoryItem(item).count
     end
