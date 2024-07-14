@@ -41,10 +41,10 @@ if Config.framework == "esx" then
         return xPlayer.getInventoryItem(item).count
     end
     
-    AddEventHandler('esx:onRemoveInventoryItem', function(source, item, count)
+    AddEventHandler('esx:removeInventoryItem', function(type, item, count)
         local xPlayer = ESX.GetPlayerFromId(source)
 
-        if item.name == Config.GPS.item then
+        if item == Config.GPS.item then
             for _, gps in ipairs(gpsdata) do
                 if gps.playerId == xPlayer.source then
                     table.remove(gpsdata, _)
