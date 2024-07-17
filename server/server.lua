@@ -9,9 +9,13 @@ function text(key, ...)
     end
 end
 
-AddEventHandler('onResourceStart', function()
-    startgps()
+AddEventHandler('onResourceStart', function() startgps() end)
+
+RegisterNetEvent('sixv_gps:stopGPS')
+AddEventHandler('sixv_gps:stopGPS', function() 
+    stopGPS(source) 
 end)
+
 
 function startgps()
     SetTimeout(Config.GPS.refreshtime, function()
@@ -38,7 +42,7 @@ function startgps()
     end)
 end
 
-RegisterUsableItem(Config.GPS.item, function(source)
+function stopGPS(source) 
     local xPlayer = GetPlayerObject(source)
 
     for _, gps in ipairs(gpsdata) do
@@ -46,8 +50,18 @@ RegisterUsableItem(Config.GPS.item, function(source)
             table.remove(gpsdata, _)
             notify(source, text("gps_notify_title"), text("gps_off"), "error")
             TriggerClientEvent("sixv_gps:clearBlips", source)
-            return
+            return true
         end
+    end
+
+    return false
+end
+
+RegisterUsableItem(Config.GPS.item, function(source)
+    local xPlayer = GetPlayerObject(source)
+
+    if stopGPS(source) then
+        return
     end
 
     table.insert(

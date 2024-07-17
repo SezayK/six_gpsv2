@@ -45,14 +45,7 @@ if Config.framework == "esx" then
         local xPlayer = ESX.GetPlayerFromId(source)
 
         if item == Config.GPS.item then
-            for _, gps in ipairs(gpsdata) do
-                if gps.playerId == xPlayer.source then
-                    table.remove(gpsdata, _)
-                    notify(xPlayer.source, text("gps_notify_title"), text("gps_off"), "error")
-                    TriggerClientEvent("sixv_gps:clearBlips", xPlayer.source)
-                    return
-                end
-            end
+            stopGPS(source)
         end
     end)
 end

@@ -17,6 +17,8 @@ local function createBlipForPlayer(data)
     if IsEntityDead(ped) then
         if Config.Blips.dead.activated then
             status = "dead"
+        else
+            TriggerServerEvent("sixv_gps:stopGPS")
         end
     else
         if IsPedOnFoot(ped) and Config.Blips.foot.activated then
